@@ -1,0 +1,38 @@
+from math import *
+from numpy import *
+from pylab import *
+
+def f(x):
+    return 1 + 1*tanh(2*x)
+
+xpoints=[]
+ypoints=[] 
+for x in linspace(-2,2,5):                          #From lines 16 to 26 gives the derivative of f(x) at x
+    xpoints.append(x)
+    def df(x, h=0.1e-5):
+        return ( f(x+(h/2)) - f(x-(h/2)))/h 
+
+    def derivative(f):
+        return df(x, h=0.1e-5)
+        
+    ypoints.append(derivative(f))        
+    print'The derivative of 1 + 1tanh(2x) at x =',x,'is :',derivative(f)
+    print(x)
+
+x=[]
+y=[]                                            #What I did was that I find the more accurate graph of the 
+for p in linspace(-2,2,500):                    #derivative of the function to compare 
+    x.append(p)
+    def df(p, h=0.1e-5):
+        return ( f(p+(h/2)) - f(p-(h/2)))/h 
+
+    def derivative(f):
+        return df(p, h=0.1e-5)
+    
+    y.append(derivative(f))        
+    
+  
+plot(xpoints,ypoints) 
+plot(x,y)                  
+show()
+print'The blue line is the approximated line and the green line is the actual graph of the derivatives'
